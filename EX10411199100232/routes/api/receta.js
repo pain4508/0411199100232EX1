@@ -46,8 +46,23 @@ router.post('/',(req, res, next)=>{
 });//post.
 
 router.put('/:id', (req, res, next)=>{
-    res.status(403).json({msg:"not implemented"});
-});//put
+
+    var id = req.params.id;
+    var origReceta = {};
+    var modReceta = {};
+
+    recetaCollection = recetaCollection.map((e, i)=>{
+     
+        if(e.id === id)
+        {
+            origReceta = Object.assign({}, e);
+            return modReceta = Object.assign({}, e, req.body);
+        }
+        return e;
+    });
+    //Se muestra el producto con el codigo original y la modificacion.
+    res.status(200).json({ original: origReceta, modificado: modReceta});
+}); //put
 
 router.delete('/:id', (req, res, next)=>{
     res.status(403).json({msg:"not implemented"});
