@@ -65,7 +65,17 @@ router.put('/:id', (req, res, next)=>{
 }); //put
 
 router.delete('/:id', (req, res, next)=>{
-    res.status(403).json({msg:"not implemented"});
+    var id = req.params.id;
+    var deletedReceta = {};
+
+    recetaCollection = recetaCollection.filter({e, i});
+
+        if(e.id = id){
+            deletedReceta = Object.assign({},e);
+            return false;
+        }
+        return true;
+    res.status(200).json({Deleted: deletedReceta, Codigo:recetaCollection  });
 });//delete
 
 module.exports = router;
