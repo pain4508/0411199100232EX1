@@ -33,9 +33,17 @@ router.get('/', (req, res, next)=>{
     res.status(200).json(recetaCollection);
 });//Get
 
-router.post('/', (req, res, next)=>{
-    res.status(403).json({msg:"not implemented"});
-});//post
+router.post('/',(req, res, next)=>{
+    var newReceta = Object.assign(
+        {},
+        recetaStruct,
+        {id:uuid()},
+        req.body
+    );
+    recetaCollection.push(newReceta);
+    res.status(200).json(newReceta);
+
+});//post.
 
 router.put('/:id', (req, res, next)=>{
     res.status(403).json({msg:"not implemented"});
